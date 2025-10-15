@@ -1,0 +1,33 @@
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: #EFF2F6;
+  font-family: "Poppins", sans-serif;
+}
+
+main {
+  flex: 1;
+}
+
+.card {
+  border-radius: 15px;
+}
+
+.btn-primary {
+  background-color: #0984e3;
+  border: none;
+  transition: 0.3s;
+}
+
+.btn-primary:hover {
+  background-color: #74b9ff;
+}
+
+.nav-link:hover {
+  text-decoration: underline;
+}
+
+.bgheader {
+    background-color: rgb(17, 17, 37);
+}
