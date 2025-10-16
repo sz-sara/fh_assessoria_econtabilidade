@@ -31,3 +31,14 @@ main {
 .bgheader {
     background-color: rgb(17, 17, 37);
 }
+.pagmain {
+  margin-left: 220px; /* desloca o conteúdo para a direita */
+  padding: 20px;
+  margin-top: 30px; /* opcional: afasta um pouco do cabeçalho */
+}
+.bgwhite {
+  background-color: white;
+}
+.bggray {
+  background-color: rgb(198, 205, 221)
+}
