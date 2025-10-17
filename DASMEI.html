@@ -73,67 +73,38 @@
         </a>
     </div>
 
-    <!-- área de usuarios -->
-    <main class="pagmain">
-        <div class="container p-4 rounded shadow-sm"  style="background-color: #f0f4f4;">
-            <!-- cabeçalho -->
-            <div class="d-flex align-items-center mb-4" >
-                <img src="https://cdn-icons-png.flaticon.com/512/12225/12225881.png" alt="" class="rounded-circle me-3 border" width="120" height="120">
-                <div>
-                    <h2 class="mb-0">Fábio Henrique</h2>
-                    <small class="text-muted">Conta ativa desde 2025</small>
-                </div>
-            </div>
-            <div class="mt-4 text-end">
-                    <button type="submit" class="btn btn-primary fw-bold" style="background-color: #C6B084; border-radius: 10px;">Editar</button>
-                </div>
-
-            <!-- Grid de informações -->
-            <form>
-                <div class="row g-3">
-                    <div class="col-md-6">
-                        <label for="nomeCompleto" class="form-label fw-bold">Nome completo</label>
-                        <input type="text" class="form-control" id="nomeCompleto" placeholder="Fábio Henrique da Silva">
-                    </div>
-                    <div class="col-md-6">
-                        <label for="email" class="form-label fw-bold">E-mail</label>
-                        <input type="email" class="form-control" id="email" placeholder="fabio@email.com">
-                    </div>
-
-                    <div class="col-md-6 mt-4">
-                        <label for="genero" class="form-label fw-bold">Gênero</label>
-                        <select class="form-select" id="genero">
-                            <option selected>Selecione...</option>
-                            <option>Masculino</option>
-                            <option>Feminino</option>
-                            <option>Outro</option>
+    <!-- das mei -->
+    <main class="pagmain">  
+        <div class="row justify-content-center mt-5">
+            <div class="col-md-6 col-lg-8 card bgwhitegray">
+            <div class="card border-0 bgwhitegray">
+                <div class="card-body p-4">
+                <form>
+                    <div class="text-center"><h1 class="fw-bold">Declaração Anual Simples Nacional</h1></div>
+                    <div class="text-center mt-5"><h3 class="fw-bold">Olá, Fábio! Realize seu DASN-MEI</h3></div>
+                    <div class="col-md-6 mt-5 mx-auto mb-5">
+                        <select class="form-select text-center" id="ano">
+                            <option selected class="fw-bold">Ano do DASN-SIMEI</option>
+                            <option>2025</option>
+                            <option>2024</option>
+                            <option>2023</option>
+                            <option>2022</option>
+                            <option>2021</option>
+                            <option>2020</option>
+                            <option>2019</option>
+                            <option>2018</option>
+                            <option>2017</option>
                         </select>
                     </div>
-                    <div class="col-md-6">
-                        <label for="pais" class="form-label fw-bold">País</label>
-                        <input type="text" class="form-control" id="pais" placeholder="Brasil">
-                    </div>
+                    <div class="d-flex justify-content-center mt-4 mb-3">
+                        <button type="submit" class="w-50 fw-bold border-0 text-white p-2" style="background-color: #C6B084; border-radius: 10px;">Baixar
 
-                    <div class="col-md-6">
-                        <label for="primeiroNome" class="form-label fw-bold">Primeiro nome</label>
-                        <input type="text" class="form-control" id="primeiroNome" placeholder="Fábio">
-                    </div>
-                    <div class="col-md-6">
-                        <label for="cep" class="form-label fw-bold">CEP</label>
-                        <input type="text" class="form-control" id="cep" placeholder="00000-000">
-                    </div>
-
-                    <div class="fw-bold">Meu endereço de Email: fabio@gmail.com</div>    
-                    <div class="mt-4">
-                        <button type="submit" class="btn btn-primary fw-bold" style="background-color: #C6B084; border-radius: 10px;"">+Adicionar endereço de email
                         </button>
                     </div>
-
-                </div><br>
-
-            </form>
-
-        </div>
+                </form>
+                </div>
+            </div>
+            </div>
     </main>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>

@@ -64,7 +64,8 @@
         <li><a href="#" class="nav-link text-dark"><i class="bi bi-bell me-2"></i> Notificações</a></li>
         <li><a href="#" class="nav-link text-dark"><i class="bi bi-search me-2"></i> Consultar DAS</a></li>
         <li><a href="#" class="nav-link text-dark"><i class="bi bi-folder2-open me-2"></i> Gestão de Documentos</a></li>
-        <li><a href="#" class="nav-link text-dark"><i class="bi bi-file-earmark-text me-2"></i> DAS - NMEI</a></li>
+        <li><a href="#" class="nav-link text-dark"><i class="bi bi-file-earmark-text me-2"></i>Gestão de Tarefas</a></li>
+        <li><a href="#" class="nav-link text-dark"><i class="bi bi-bar-chart me-2"></i>Relatórios Gerais de Impostos</a></li>
         <li><a href="area_usuario.html" class="nav-link text-dark"><i class="bi bi-box-arrow-right me-2"></i> Sair</a></li>
         </ul>
         <hr>
@@ -80,52 +81,60 @@
             <div class="d-flex align-items-center mb-4" >
                 <img src="https://cdn-icons-png.flaticon.com/512/12225/12225881.png" alt="" class="rounded-circle me-3 border" width="120" height="120">
                 <div>
-                    <h2 class="mb-0">Fábio Henrique</h2>
-                    <small class="text-muted">Conta ativa desde 2025</small>
+                    <h2 class="mb-0">Empresa 1</h2>
+                    <small class="text-muted">empresa1@gmail.com</small>
                 </div>
             </div>
-            <div class="mt-4 text-end">
-                    <button type="submit" class="btn btn-primary fw-bold" style="background-color: #C6B084; border-radius: 10px;">Editar</button>
-                </div>
 
             <!-- Grid de informações -->
             <form>
-                <div class="row g-3">
+                <div class="row g-3 mt-4">
                     <div class="col-md-6">
-                        <label for="nomeCompleto" class="form-label fw-bold">Nome completo</label>
-                        <input type="text" class="form-control" id="nomeCompleto" placeholder="Fábio Henrique da Silva">
+                        <label for="nomeempresa" class="form-label text-center fw-bold bgwhite w-100 p-3">Nome Empresa</label>
                     </div>
                     <div class="col-md-6">
-                        <label for="email" class="form-label fw-bold">E-mail</label>
-                        <input type="email" class="form-control" id="email" placeholder="fabio@email.com">
+                        <label for="cnpj" class="form-label text-center fw-bold bgwhite w-100 p-3">CNPJ</label>
                     </div>
 
                     <div class="col-md-6 mt-4">
-                        <label for="genero" class="form-label fw-bold">Gênero</label>
-                        <select class="form-select" id="genero">
-                            <option selected>Selecione...</option>
-                            <option>Masculino</option>
-                            <option>Feminino</option>
-                            <option>Outro</option>
+                                                <label for="upload" class="form-label text-center fw-bold bgwhite w-100 p-2">
+                                                    Upload do DAS    
+                                                    <button type="submit" class="btn btn-primary ms-3 fw-bold text-end" style="background-color: #C6B084; border-radius: 10px;"">Upload
+                                                    </button>
+                                                </label>
+                    </div>
+                    <div class="col-md-6">
+                                                <label for="nomeCompleto" class="form-label text-center fw-bold bgwhite w-100 p-3">Data de inicio</label>
+                    </div>
+
+                    <div class="col-md-6 mt-5">
+                        <h3 class="fw-bold">Gestão de Documentos</h3>
+                        <label for="das" class="form-label mt-3 fw-bold">Selecionar DAS</label>
+                        <select class="form-select text-center" id="das">
+                            <option selected class="fw-bold">DAS</option>
+                            <option>Janeiro / 2025</option>
+                            <option>Fevereiro / 2025</option>
+                            <option>Março / 2025</option>
+                            <option>Abril / 2025</option>
+                            <option>Maio / 2025</option>
+                            <option>Junho / 2025</option>
+                            <option>Julho / 2025</option>
+                            <option>Agosto / 2025</option>
+                            <option>Setembro / 2025</option>
+                            <option>Outubro / 2025</option>
+                            <option>Novembro / 2025</option>
+                            <option>Dezembro / 2025</option>
                         </select>
                     </div>
-                    <div class="col-md-6">
-                        <label for="pais" class="form-label fw-bold">País</label>
-                        <input type="text" class="form-control" id="pais" placeholder="Brasil">
-                    </div>
 
-                    <div class="col-md-6">
-                        <label for="primeiroNome" class="form-label fw-bold">Primeiro nome</label>
-                        <input type="text" class="form-control" id="primeiroNome" placeholder="Fábio">
-                    </div>
-                    <div class="col-md-6">
-                        <label for="cep" class="form-label fw-bold">CEP</label>
-                        <input type="text" class="form-control" id="cep" placeholder="00000-000">
-                    </div>
 
-                    <div class="fw-bold">Meu endereço de Email: fabio@gmail.com</div>    
-                    <div class="mt-4">
-                        <button type="submit" class="btn btn-primary fw-bold" style="background-color: #C6B084; border-radius: 10px;"">+Adicionar endereço de email
+                    <div class="mt-3 mb-3 fw-bold">
+                        <input type="checkbox" id="marcar" name="marcar" value="checkbox">
+                        <label for="vehicle1">Marcar como pago</label><br>
+                    </div>  
+
+                    <div class="mt-2">
+                        <button type="submit" class="btn btn-primary fw-bold d" style="background-color: #C6B084; border-radius: 10px;"">Salvar
                         </button>
                     </div>
 
