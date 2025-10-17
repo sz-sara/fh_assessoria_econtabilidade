@@ -1,33 +1,88 @@
+/* Importa a fonte Poppins */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+
+
+/* Variáveis de cor para todo o site */
+:root {
+    --cor-primaria: #C6B084; /* Tom de bege/dourado para destaques */
+    --cor-texto: #333333;
+    --cor-fundo-claro: #F8F9FA; /* Fundo suave para seções (cinza muito claro) */
+    --header-escuro: #1A202C;
+}
+
+/* Estilos aplicados ao corpo de todas as páginas */
 body {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  background-color: #EFF2F6;
-  font-family: "Poppins", sans-serif;
+    font-family: 'Poppins', sans-serif;
+    background-color: #FFFFFF; /* Fundo principal branco (padrão landing page) */
+    color: var(--cor-texto);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
+/* Garante que o conteúdo principal ocupe o espaço disponível */
 main {
-  flex: 1;
+    flex: 1;
 }
 
+/* Botão principal padrão para TODO o site */
+.btn-primary-custom {
+    background-color: var(--cor-primaria);
+    border-color: var(--cor-primaria);
+    color: #FFFFFF;
+    font-weight: 600;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    border: none; /* Adicionado do CSS do colega */
+    transition: background-color 0.3s ease, border-color 0.3s ease; /* Adicionado do CSS do colega */
+}
+
+.btn-primary-custom:hover {
+    background-color: #b39d70; /* Um tom mais escuro para o hover */
+    border-color: #b39d70;
+    color: #FFFFFF;
+}
+
+/* Estilo para cards, vindo da tela de login */
 .card {
-  border-radius: 15px;
+    border-radius: 15px;
 }
 
-.btn-primary {
-  background-color: #0984e3;
-  border: none;
-  transition: 0.3s;
+
+/* Cor de destaque para textos e ícones */
+.text-primary-custom {
+    color: var(--cor-primaria) !important;
 }
 
-.btn-primary:hover {
-  background-color: #74b9ff;
+/* Cor de destaque para links */
+.link-custom {
+    color: var(--cor-primaria);
+    transition: color 0.3s ease;
 }
 
+.link-custom:hover {
+    color: #b39d70;
+}
+
+/* Efeito de hover para links de navegação */
 .nav-link:hover {
-  text-decoration: underline;
+    text-decoration: underline;
 }
 
+/* Classe para o fundo do cabeçalho escuro (usado na tela de login) */
 .bgheader {
-    background-color: rgb(17, 17, 37);
+    background-color: var(--header-escuro);
 }
+
+/* Fundo claro para seções alternadas na landing page */
+.bg-light {
+    background-color: var(--cor-fundo-claro) !important;
+}
+
+/* Ajustes gerais de layout para seções */
+section {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+}
+
