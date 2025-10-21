@@ -54,7 +54,7 @@ main {
 
 /* Cor de destaque para textos e ícones */
 .text-primary-custom {
-    color: var(--cor-primaria) !important;
+    color: var(--cor-primaria);
 }
 
 /* Cor de destaque para links */
@@ -79,7 +79,7 @@ main {
 
 /* Fundo claro para seções alternadas na landing page */
 .bg-light {
-    background-color: var(--cor-fundo-claro) !important;
+    background-color: var(--cor-fundo-claro) ;
 }
 
 /* Ajustes gerais de layout para seções */
