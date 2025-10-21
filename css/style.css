@@ -1,7 +1,9 @@
 /* Importa a fonte Poppins */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
 
-
+html {
+    scroll-padding-top: 80px; /* Altura aproximada do seu header + um pequeno respiro */
+}
 
 /* Variáveis de cor para todo o site */
 :root {
