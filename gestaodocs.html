@@ -1,150 +1,127 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
     <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Página com Sidebar e Cabeçalho</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Dashboard - FH Assessoria</title>
+    
+    <!-- Google Fonts: Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-        <!-- Bootstrap CSS -->
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
-        <link rel="stylesheet" href="./css/style.css" />
-        <style>
-            .sidebar {
-                width: 220px;
-                height: calc(100vh - 56px); /* altura total - altura do cabeçalho */
-                position: fixed;
-                top: 56px; /* começa logo abaixo do cabeçalho */
-                left: 0;
-                background-color: #fff;
-                border-right: 1px solid #dee2e6;
-                padding: 1rem;
-            }
-        </style>
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    
+    <!-- CSS Padronizado (Global) -->
+    <link rel="stylesheet" href="./css/style.css" />
+    
+    <!-- CSS Específico do Dashboard (Layout) -->
+    <link rel="stylesheet" href="./css/dashboard.css" />
+    
     </head>
 
-    <body class="bgwhite">
+    <body>
+        
+ <!-- O cabeçalho será injetado aqui pelo JS -->
+        <div id="header-placeholder"></div>
 
-        <!-- header  -->
-        <header class="navbar navbar-expand-lg navbar-light shadow-sm bgheader" style="position: fixed; width: 100%; z-index: 1000;">
-            <div class="container">
-            <a class="navbar-brand fw-regular text-white" href="index.html">FH Assessoria e Contabilidade</a>
-            <button
-                class="navbar-toggler"
-                type="button"
-                data-bs-toggle="collapse"
-                data-bs-target="#navbarNav"
-            >
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-                <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link active text-white" href="#">Serviços</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white" href="#">Sobre</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white" href="#">Contato</a>
-                </li>
-                </ul>
-            </div>
-            </div>
-        </header>
+        <!-- Container principal do Layout (Flexbox) -->
+        <div class="dashboard-container">
 
-    <!-- Sidebar -->
-    <div class="sidebar d-flex flex-column flex-shrink-0" style="background-color: #f0f4f4;">
-        <h6 class="text-muted text-uppercase mb-3 row justify-content-center fw-bold mt-3">Olá, Fábio</h6>
-        <hr>
-        <h6 class="text-muted text-uppercase mb-3">Menu Principal</h6>
-        <ul class="nav nav-pills flex-column mb-auto">
-        <li><a href="#" class="nav-link text-dark"><i class="bi bi-grid me-2"></i> Dashboard</a></li>
-        <li><a href="#" class="nav-link text-dark"><i class="bi bi-bell me-2"></i> Notificações</a></li>
-        <li><a href="#" class="nav-link text-dark"><i class="bi bi-search me-2"></i> Consultar DAS</a></li>
-        <li><a href="#" class="nav-link text-dark"><i class="bi bi-folder2-open me-2"></i> Gestão de Documentos</a></li>
-        <li><a href="#" class="nav-link text-dark"><i class="bi bi-file-earmark-text me-2"></i>Gestão de Tarefas</a></li>
-        <li><a href="#" class="nav-link text-dark"><i class="bi bi-bar-chart me-2"></i>Relatórios Gerais de Impostos</a></li>
-        <li><a href="area_usuario.html" class="nav-link text-dark"><i class="bi bi-box-arrow-right me-2"></i> Sair</a></li>
-        </ul>
-        <hr>
-        <a href="#" class="nav-link text-dark">
-        <i class="bi bi-person me-2"></i> Usuário
-        </a>
-    </div>
+            <!-- O menu lateral será injetado aqui pelo JS -->
+            <div id="sidebar-placeholder"></div>
 
-    <!-- área de usuarios -->
-    <main class="pagmain">
-        <div class="container p-4 rounded shadow-sm"  style="background-color: #f0f4f4;">
-            <!-- cabeçalho -->
-            <div class="d-flex align-items-center mb-4" >
-                <img src="https://cdn-icons-png.flaticon.com/512/12225/12225881.png" alt="" class="rounded-circle me-3 border" width="120" height="120">
-                <div>
-                    <h2 class="mb-0">Empresa 1</h2>
-                    <small class="text-muted">empresa1@gmail.com</small>
+            <!-- Conteúdo Principal -->
+            <main class="main-content">
+                <div class="container p-4 rounded shadow-sm" style="background-color: #f0f4f4;">
+                    <!-- cabeçalho -->
+                    <div class="d-flex align-items-center mb-4" >
+                        <img src="https://placehold.co/120x120/E8E8E8/333?text=Logo" alt="Logo Empresa" class="rounded-circle me-3 border" width="120" height="120">
+                        <div>
+                            <h2 class="mb-0 fw-bold">Empresa 1</h2>
+                            <small class="text-muted">empresa1@gmail.com</small>
+                        </div>
+                    </div>
+
+                    <!-- Grid de informações -->
+                    <form>
+                        <div class="row g-3 mt-4">
+                            <!-- Coluna 1 -->
+                            <div class="col-md-6">
+                                <div class="card shadow-sm border-0 mb-3">
+                                    <div class="card-body p-3">
+                                        <label for="nomeempresa" class="form-label text-muted">Nome Empresa</label>
+                                        <p class="h5 fw-semibold">Empresa 1 LTDA</p>
+                                    </div>
+                                </div>
+                                <div class="card shadow-sm border-0">
+                                    <div class="card-body p-3">
+                                        <label for="nomeCompleto" class="form-label text-muted">Data de Início</label>
+                                        <p class="h5 fw-semibold">22/10/2025</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Coluna 2 -->
+                            <div class="col-md-6">
+                                <div class="card shadow-sm border-0 mb-3">
+                                    <div class="card-body p-3">
+                                        <label for="cnpj" class="form-label text-muted">CNPJ</label>
+                                        <p class="h5 fw-semibold">00.123.456/0001-78</p>
+                                    </div>
+                                </div>
+                                <div class="card shadow-sm border-0">
+                                    <div class="card-body p-3 d-flex justify-content-between align-items-center">
+                                        <div>
+                                            <label for="upload" class="form-label text-muted">Upload do DAS</label>
+                                            <p class="h5 fw-semibold mb-0">Anexar novo documento</p>
+                                        </div>
+                                        <button type="button" class="btn btn-primary-custom">Upload</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Seção de Gestão -->
+                            <div class="col-12 mt-5">
+                                <h3 class="fw-bold">Gestão de Documentos</h3>
+                                <div class="row g-3 align-items-end">
+                                    <div class="col-md-6">
+                                        <label for="das" class="form-label mt-3 fw-semibold">Selecionar DAS</label>
+                                        <select class="form-select" id="das">
+                                            <option selected>Selecione o mês...</option>
+                                            <option>Janeiro / 2025</option>
+                                            <option>Fevereiro / 2025</option>
+                                            <option>Março / 2025</option>
+                                            <!-- ... (outros meses) ... -->
+                                        </select>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-check mt-3 mb-3 fw-semibold">
+                                            <input class="form-check-input" type="checkbox" id="marcar" name="marcar">
+                                            <label class="form-check-label" for="marcar">Marcar como pago</label>
+                                        </div> 
+                                    </div>
+                                    <div class="col-md-3">
+                                        <button type="submit" class="btn btn-primary-custom w-100">Salvar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
                 </div>
-            </div>
-
-            <!-- Grid de informações -->
-            <form>
-                <div class="row g-3 mt-4">
-                    <div class="col-md-6">
-                        <label for="nomeempresa" class="form-label text-center fw-bold bgwhite w-100 p-3">Nome Empresa</label>
-                    </div>
-                    <div class="col-md-6">
-                        <label for="cnpj" class="form-label text-center fw-bold bgwhite w-100 p-3">CNPJ</label>
-                    </div>
-
-                    <div class="col-md-6 mt-4">
-                                                <label for="upload" class="form-label text-center fw-bold bgwhite w-100 p-2">
-                                                    Upload do DAS    
-                                                    <button type="submit" class="btn btn-primary ms-3 fw-bold text-end" style="background-color: #C6B084; border-radius: 10px;"">Upload
-                                                    </button>
-                                                </label>
-                    </div>
-                    <div class="col-md-6">
-                                                <label for="nomeCompleto" class="form-label text-center fw-bold bgwhite w-100 p-3">Data de inicio</label>
-                    </div>
-
-                    <div class="col-md-6 mt-5">
-                        <h3 class="fw-bold">Gestão de Documentos</h3>
-                        <label for="das" class="form-label mt-3 fw-bold">Selecionar DAS</label>
-                        <select class="form-select text-center" id="das">
-                            <option selected class="fw-bold">DAS</option>
-                            <option>Janeiro / 2025</option>
-                            <option>Fevereiro / 2025</option>
-                            <option>Março / 2025</option>
-                            <option>Abril / 2025</option>
-                            <option>Maio / 2025</option>
-                            <option>Junho / 2025</option>
-                            <option>Julho / 2025</option>
-                            <option>Agosto / 2025</option>
-                            <option>Setembro / 2025</option>
-                            <option>Outubro / 2025</option>
-                            <option>Novembro / 2025</option>
-                            <option>Dezembro / 2025</option>
-                        </select>
-                    </div>
-
-
-                    <div class="mt-3 mb-3 fw-bold">
-                        <input type="checkbox" id="marcar" name="marcar" value="checkbox">
-                        <label for="vehicle1">Marcar como pago</label><br>
-                    </div>  
-
-                    <div class="mt-2">
-                        <button type="submit" class="btn btn-primary fw-bold d" style="background-color: #C6B084; border-radius: 10px;"">Salvar
-                        </button>
-                    </div>
-
-                </div><br>
-
-            </form>
-
+            </main>
         </div>
-    </main>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Bootstrap JS -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+        <!-- NOSSO NOVO SCRIPT DE MODULARIZAÇÃO -->
+        <!-- O 'defer' garante que ele só execute após o HTML ser lido -->
+        <script src="./js/main.js" defer></script>
+
     </body>
 </html>
