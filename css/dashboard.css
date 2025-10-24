@@ -134,6 +134,17 @@
     color: #ffffff; /* Texto branco (exemplo) */
 }
 
+/* * ESTILOS PARA BADGES DE 2 ESTADOS (Finalizado/Pendente) */
+.status-finalizado {
+    background-color: #8BA883; /* Fundo verde (exemplo) */
+    color: #ffffff; /* Texto branco (exemplo) */
+}
+.status-pendente {
+    background-color: #F7D358; /* Fundo amarelo (exemplo) */
+    color: #ffffff; /* Texto branco (exemplo) */
+
+}
+
 /* ==============================================
    ESTILOS DA PAGINAÇÃO
    ============================================== */

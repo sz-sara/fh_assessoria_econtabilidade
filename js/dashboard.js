@@ -47,3 +47,25 @@ document.addEventListener('DOMContentLoaded', function () {
     // Por exemplo, a lógica para o filtro ou para a busca.
 
 });
+
+    const badgesCliente = document.querySelectorAll('.status-badge-tarefas'); // Use outra classe específica!
+
+    badgesCliente.forEach(badge => {
+        badge.addEventListener('click', function () {
+            const isFinalizado = this.textContent === 'Finalizado';
+
+            if (isFinalizado) {
+                this.textContent = 'Pendente';
+                this.classList.remove('status-finalizado');
+                this.classList.add('status-pendente');
+            } else {
+                this.textContent = 'Finalizado';
+                this.classList.remove('status-pendente');
+                this.classList.add('status-finalizado');
+            }
+        });
+    });
+
+    // 3. ADICIONE OUTRAS LÓGICAS DESTA PÁGINA AQUI...
+    // Por exemplo, a lógica para o filtro ou para a busca.
+
