@@ -2,22 +2,23 @@
  * Este arquivo deve ser carregado DEPOIS do style.css
  */
 
-/* Container principal que alinha sidebar e main */
 .dashboard-container {
     display: flex;
     padding-top: 56px; /* Mesma altura do header fixo */
     height: 100vh;
 }
 
-/* * A Sidebar (Menu Lateral)
- */
-.sidebar {
+/* ==============================================
+   ESTILOS GERAIS DA SIDEBAR (APLICA-SE A AMBAS)
+   ============================================== */
+.sidebar, 
+.sidebar-contador { /* Aplica a base a ambas as classes */
     width: 250px; /* Largura padrão do menu */
     flex-shrink: 0; /* Impede que o menu encolha */
     background-color: #f8f9fa;
     border-right: 1px solid #dee2e6;
     overflow-y: auto; /* Permite rolar o menu se for longo */
-    transition: width 0.3s ease; /* Animação de abrir/fechar */
+    transition: width 0.3s ease, padding 0.3s ease; /* Animação de abrir/fechar - Adicionado padding */
 }
 
 /* * O Conteúdo Principal
@@ -27,32 +28,134 @@
     overflow-y: auto; /* Permite rolar o conteúdo principal */
     padding: 2rem;
     background-color: #e9ecef; /* Um fundo levemente diferente para o conteúdo */
+    transition: margin-left 0.3s ease; /* Anima o conteúdo principal junto com o menu */
 }
 
-/* * Estilos para o modo "Fechado" (colapsado)
+/* * Estilos para o modo "Fechado" (colapsado) - Aplicado a ambas
  */
-.sidebar.collapsed {
+.sidebar.collapsed,
+.sidebar-contador.collapsed {
     width: 0;
     overflow: hidden; /* Esconde o conteúdo */
     padding-left: 0;
     padding-right: 0;
+    border-right: none; /* Esconde a borda quando fechado */
 }
 
-/* Ajustes no menu lateral para ficarem mais bonitos */
-.sidebar .nav-link {
+
+/* Ajustes gerais no menu lateral */
+.sidebar .nav-link,
+.sidebar-contador .nav-link {
     font-weight: 500;
     color: #343a40;
+    white-space: nowrap; /* Impede que o texto quebre linha durante a animação */
 }
 
-.sidebar .nav-link .bi {
+.sidebar .nav-link .bi,
+.sidebar-contador .nav-link .bi {
     color: #6c757d;
 }
 
-.sidebar .nav-link:hover {
+.sidebar .nav-link:hover,
+.sidebar-contador .nav-link:hover {
     background-color: #dee2e6;
 }
 
-.sidebar .nav-link.active {
+/* Link ativo - usa a variável global */
+.sidebar .nav-link.active,
+.sidebar-contador .nav-link.active {
     background-color: var(--cor-primaria);
     color: #fff;
 }
+
+/* ==============================================
+   ESTILOS ESPECÍFICOS PARA .sidebar-contador (Se houver)
+   ============================================== 
+   Adicione aqui SOMENTE o que for diferente da .sidebar padrão.
+   Exemplo:
+   .sidebar-contador {
+       background-color: #e0e0e0; 
+   }
+*/
+
+
+/* ==============================================
+   ESTILOS PERSONALIZADOS DO DASHBOARD
+   ============================================== */
+
+/* Estilos gerais do card principal */
+.main-content-card {
+    background-color: #fff; /* Fundo branco para o card */
+}
+
+/* Estilos da tabela */
+.dashboard-table th {
+    font-weight: 600;
+    white-space: nowrap; /* Impede que o cabeçalho quebre linha */
+}
+.dashboard-table td {
+    vertical-align: middle;
+}
+
+/* * ESTILOS PARA OS BADGES DE STATUS (GENÉRICO) */
+.status-badge {
+    cursor: pointer;
+    font-size: 0.85rem;
+    font-weight: 600;
+    padding: 0.5em 0.75em;
+    border-radius: 6px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    min-width: 90px; /* Garante uma largura mínima para consistência */
+    text-align: center;
+    display: inline-block; /* Necessário para aplicar largura mínima */
+}
+
+/* * ESTILOS PARA BADGES DE 3 ESTADOS (Pago/Pendente/Vencido) */
+.status-pago {
+    background-color: #8BA883; /* Fundo verde claro */
+    color: #ffffff; /* Texto branco */
+}
+.status-pendente {
+    background-color: #F7D358; /* Fundo amarelo claro */
+    color: #ffffff; /* Texto branco */
+}
+.status-vencido {
+    background-color: #BB8B7E; /* Fundo vermelho claro */
+    color: #ffffff; /* Texto branco */
+}
+
+/* * ESTILOS PARA BADGES DE 2 ESTADOS (Adimplente/Inadimplente) */
+.status-adimplente {
+    background-color: #8BA883; /* Fundo verde (exemplo) */
+    color: #ffffff; /* Texto branco (exemplo) */
+}
+.status-inadimplente {
+    background-color: #BB8B7E; /* Fundo vermelho (exemplo) */
+    color: #ffffff; /* Texto branco (exemplo) */
+}
+
+/* ==============================================
+   ESTILOS DA PAGINAÇÃO
+   ============================================== */
+.pagination .page-item .page-link {
+    color: var(--cor-texto); /* Cor padrão dos links */
+    border-radius: 0.3rem; /* Bordas levemente arredondadas */
+    margin: 0 2px;
+    border: 1px solid #dee2e6;
+}
+.pagination .page-item .page-link:hover {
+    background-color: #e9ecef; /* Cor de fundo ao passar o mouse */
+    color: #000;
+    border-color: #dee2e6;
+}
+.pagination .page-item.active .page-link {
+    background-color: var(--cor-primaria); /* Cor primária para o item ativo */
+    border-color: var(--cor-primaria);
+    color: #fff; /* Texto branco no item ativo */
+}
+.pagination .page-item.disabled .page-link {
+    color: #6c757d; /* Cor para itens desabilitados */
+    background-color: #fff;
+    border-color: #dee2e6;
+}
+

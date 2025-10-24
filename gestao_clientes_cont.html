@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Gestão Clientes - FH Assessoria</title>
+
+    <!-- Google Fonts: Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    
+    <!-- CSS Padronizado (Global) -->
+    <link rel="stylesheet" href="./css/style.css" />
+    
+    <!-- CSS Específico do Dashboard (Layout) -->
+    <link rel="stylesheet" href="./css/dashboard.css" />
+    
+    </head>
+
+    <body>
+        <!-- O cabeçalho modular será injetado aqui -->
+        <div id="header-placeholder"></div>
+
+        <!-- Container principal do Layout (Flexbox) -->
+        <div class="dashboard-container">
+
+            <!-- O menu lateral modular será injetado aqui -->
+            <div id="sidebar-contador-placeholder"></div>
+
+            <!-- Conteúdo Principal -->
+            <main class="main-content">
+                
+                <!-- Card de Conteúdo Principal -->
+                <div class="card shadow-sm border-0 main-content-card">
+                    <div class="card-body p-4 p-md-5">
+
+                        <!-- Título e Ferramentas -->
+                        <div class="row align-items-center mb-4">
+                            <div class="col-md-6">
+                                <h1 class="h2 fw-bold mb-0">Gestão de Clientes</h1>
+                            </div>
+                            <div class="col-md-6 d-flex justify-content-md-end mt-3 mt-md-0">
+                                <!-- Busca Rápida -->
+                                <div class="input-group" style="max-width: 250px;">
+                                    <span class="input-group-text bg-light border-0"><i class="bi bi-search"></i></span>
+                                    <input type="text" class="form-control bg-light border-0" placeholder="Busca rápida...">
+                                </div>
+                                <!-- Filtro -->
+                                <div class="dropdown ms-3">
+                                    <button class="btn btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        Filtrar: <span class="fw-semibold">Novo</span>
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item" href="#">Novo</a></li>
+                                        <li><a class="dropdown-item" href="#">Adimplente</a></li>
+                                        <li><a class="dropdown-item" href="#">Inadimplente</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Tabela de Clientes -->
+                        <div class="table-responsive">
+                            <table class="table align-middle table-hover dashboard-table">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th scope="col">Empresa</th>
+                                        <th scope="col">Nome Social</th>
+                                        <th scope="col">CNPJ</th>
+                                        <th scope="col">Email</th>
+                                        <th scope="col">Status Geral</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!-- ESTES SÃO OS ITENS QUE O JS IRÁ CONTROLAR -->
+                                    <tr>
+                                        <td class="fw-semibold">Empresa 1</td>
+                                        <td>Microsoft</td>
+                                        <td>98.489.772/6072-59</td>
+                                        <td>juxdw@microsoft.com</td>
+                                        <td><span class="badge status-adimplente status-badge-cliente" style="cursor: pointer;">Adimplente</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="fw-semibold">Empresa 2</td>
+                                        <td>Yahoo</td>
+                                        <td>07.197.801/8122-85</td>
+                                        <td>dwoda@yahoo.com</td>
+                                        <td><span class="badge status-adimplente status-badge-cliente" style="cursor: pointer;">Adimplente</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="fw-semibold">Empresa 3</td>
+                                        <td>Adobe</td>
+                                        <td>52.035.437/5312-83</td>
+                                        <td>hwafa@adobe.com</td>
+                                        <td><span class="badge status-adimplente status-badge-cliente" style="cursor: pointer;">Adimplente</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="fw-semibold">Empresa 4</td>
+                                        <td>Tesla</td>
+                                        <td>68.834.169/8119-68</td>
+                                        <td>fagoa@tesla.com</td>
+                                        <td><span class="badge status-adimplente status-badge-cliente" style="cursor: pointer;">Adimplente</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="fw-semibold">Empresa 5</td>
+                                        <td>Google</td>
+                                        <td>94.182.065/8062-53</td>
+                                        <td>fahwaa@google.com</td>
+                                        <td><span class="badge status-adimplente status-badge-cliente" style="cursor: pointer;">Adimplente</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="fw-semibold">Empresa 6</td>
+                                        <td>Netflix</td>
+                                        <td>87.518.040/9761-80</td>
+                                        <td>fawha@microsoft.com</td>
+                                        <td><span class="badge status-adimplente status-badge-cliente" style="cursor: pointer;">Adimplente</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="fw-semibold">Empresa 7</td>
+                                        <td>HBO</td>
+                                        <td>10.124.757/8218-53</td>
+                                        <td>gawgwga@yahoo.com</td>
+                                        <td><span class="badge status-adimplente status-badge-cliente" style="cursor: pointer;">Adimplente</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="fw-semibold">Empresa 8</td>
+                                        <td>Facebook</td>
+                                        <td>35.435.746/3364-45</td>
+                                        <td>hohoaa@facebook.com</td>
+                                        <td><span class="badge status-adimplente status-badge-cliente" style="cursor: pointer;">Adimplente</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <!-- Paginação -->
+                        <nav aria-label="Paginação da tabela" class="d-flex justify-content-end mt-4">
+                            <ul class="pagination">
+                                <li class="page-item"><a class="page-link" href="#"><i class="bi bi-chevron-left"></i></a></li>
+                                <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                <li class="page-item"><a class="page-link" href="#"><i class="bi bi-chevron-right"></i></a></li>
+                            </ul>
+                        </nav>
+
+                    </div>
+                </div>
+            </main>
+        </div>
+<!-- Bootstrap JS (Necessário para alguns componentes) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Sobrescreve a lista 'components' ANTES de main.js rodar
+        const components = [
+            ["header-placeholder", "_header_contador.html"], // Carrega o header do contador
+            ["sidebar-contador-placeholder", "_sidebar_cont.html"] // Carrega a sidebar do contador
+        ];
+    </script>
+    <!-- NOSSO SCRIPT DE MODULARIZAÇÃO (ESSENCIAL PARA O MENU) -->
+    <script src="./js/main.js" defer></script>
+
+    <!-- SCRIPT DA PÁGINA ESPECÍFICA (se houver, como o dos botões de status) -->
+    <script src="./js/dashboard.js" defer></script>
+
+
+    </body>
+</html>
+
