@@ -1,13 +1,13 @@
 // Espera o DOM carregar antes de executar
 document.addEventListener("DOMContentLoaded", function() {
 
-    // Lista de componentes para a ÁREA DO CLIENTE
+    // Lista de componentes para a ÁREA DO CONTADOR
     const components = [
-        ["header-placeholder", "_header.html"],         // Cabeçalho padrão com botão 'sidebarToggle'
-        ["sidebar-placeholder", "_sidebar.html"]          // Sidebar padrão com id 'sidebar'
+        ["header-placeholder", "_header_contador.html"], // Cabeçalho do contador com botão 'sidebarContadorToggle'
+        ["sidebar-contador-placeholder", "_sidebar_cont.html"] // Sidebar do contador com id 'sidebarContador'
     ];
 
-    // Função para carregar um único componente (sem alterações)
+    // Função para carregar um único componente (sem alterações - pode ser movida para um arquivo utils.js no futuro)
     const loadHTML = (url, elementId) => {
         return fetch(url)
             .then(response => {
@@ -34,13 +34,13 @@ document.addEventListener("DOMContentLoaded", function() {
     Promise.all(
         components.map(comp => loadHTML(comp[1], comp[0]))
     ).then(() => {
-        // ---- COMPONENTES DA ÁREA DO CLIENTE CARREGADOS ----
-        
-        // Inicializa APENAS a sidebar padrão (ID: 'sidebar', Botão: 'sidebarToggle')
-        initializeSidebarToggle('sidebarToggle', 'sidebar');
+        // ---- COMPONENTES DA ÁREA DO CONTADOR CARREGADOS ----
 
-        // Define o link ativo APENAS na sidebar padrão
-        setActiveNavLink('.sidebar'); 
+        // Inicializa APENAS a sidebar do contador (ID: 'sidebarContador', Botão: 'sidebarContadorToggle')
+        initializeSidebarToggle('sidebarContadorToggle', 'sidebarContador'); 
+
+        // Define o link ativo APENAS na sidebar do contador
+        setActiveNavLink('.sidebar-contador'); 
 
     }).catch(error => {
         console.error("Erro ao carregar um ou mais componentes:", error);
@@ -50,7 +50,8 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
 /**
- * Inicializa a lógica de abrir/fechar de um menu lateral específico.
+ * Inicializa a lógica de abrir/fechar de um menu lateral específico. 
+ * (Esta função é idêntica à do main.js - pode ser movida para um utils.js no futuro)
  */
 function initializeSidebarToggle(toggleButtonId, sidebarId) {
     const sidebarToggle = document.getElementById(toggleButtonId);
@@ -67,6 +68,7 @@ function initializeSidebarToggle(toggleButtonId, sidebarId) {
 
 /**
  * Adiciona a classe 'active' ao link de navegação correto dentro de uma sidebar específica.
+ * (Esta função é idêntica à do main.js - pode ser movida para um utils.js no futuro)
  */
 function setActiveNavLink(sidebarSelector) {
     const currentPage = window.location.pathname.split("/").pop();
@@ -81,4 +83,3 @@ function setActiveNavLink(sidebarSelector) {
         }
     }
 }
-

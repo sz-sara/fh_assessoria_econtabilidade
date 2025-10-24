@@ -156,15 +156,9 @@
         </div>
 <!-- Bootstrap JS (Necessário para alguns componentes) -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
-        // Sobrescreve a lista 'components' ANTES de main.js rodar
-        const components = [
-            ["header-placeholder", "_header_contador.html"], // Carrega o header do contador
-            ["sidebar-contador-placeholder", "_sidebar_cont.html"] // Carrega a sidebar do contador
-        ];
-    </script>
+
     <!-- NOSSO SCRIPT DE MODULARIZAÇÃO (ESSENCIAL PARA O MENU) -->
-    <script src="./js/main.js" defer></script>
+    <script src="./js/cont.js" defer></script>
 
     <!-- SCRIPT DA PÁGINA ESPECÍFICA (se houver, como o dos botões de status) -->
     <script src="./js/dashboard.js" defer></script>
