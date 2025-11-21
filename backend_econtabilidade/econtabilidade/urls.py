@@ -16,7 +16,25 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from core import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('cadastro/', views.cadastro_usuario, name='cadastro_usuario'),
+    path('login/', views.login_usuario, name='login_usuario'),
+    path('', views.index, name='index'),
+    path('consulta_das_cliente/', views.consulta_das_cliente, name='consulta_das_cliente'),
+    path('consulta_das_cont/', views.consulta_das_cont, name='consulta_das_cont'),
+    path('dashboard_cliente/', views.dashboard_cliente, name='dashboard_cliente'),
+    path('dashboard_cont/', views.dashboard_cont, name='dashboard_cont'),
+    path('DASMEI_cliente/', views.DASMEI_cliente, name='DASMEI_cliente'),
+    path('DASMEI_cont/', views.DASMEI_cont, name='DASMEI_cont'),
+    path('gestao_clientes_cont/', views.gestao_clientes_cont, name='gestao_clientes_cont'),
+    path('gestao_impostos_cont/', views.gestao_impostos_cont, name='gestao_impostos_cont'),
+    path('gestao_tarefas_cont/', views.gestao_tarefas_cont, name='gestao_tarefas_cont'),
+    path('gestaodocs/', views.gestaodocs, name='gestaodocs'),
+    path('notificacoes_cliente/', views.notificacoes_cliente, name='notificacoes_cliente'),
+    path('notificacoes_cont/', views.notificacoes_cont, name='notificacoes_cont'),
+    path('redefinicao', views.redefinicao, name='redefinicao'),
+    path('usuario', views.usuario, name='usuario'),
 ]
