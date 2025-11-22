@@ -1,4 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from .models import Usuario
+from django.contrib import messages
 
 # Create your views here.
 
@@ -12,7 +14,34 @@ def cadastro_usuario(request):
 
 # login 
 def login_usuario(request):
+    if request.method == 'POST':
+        email = request.POST.get('email')
+        senha = request.POST.get('senha')
+
+        # tenta achar o usuário
+        try:
+            usuario = Usuario.objects.get(email=email, senha=senha)
+        except Usuario.DoesNotExist:
+            messages.error(request, 'E-mail ou senha inválidos.')
+            return render(request, 'login.html')
+
+        # guarda dados básicos na sessão
+        request.session['usuario_id'] = usuario.id
+        request.session['tipo_de_usuario'] = usuario.tipo_de_usuario
+
+        # redireciona conforme o tipo
+        if usuario.tipo_de_usuario == 'cliente':
+            return redirect('dashboard_cliente')
+        elif usuario.tipo_de_usuario in ['contador']:
+            return redirect('dashboard_cont')
+        else:
+            # se vier algum tipo inesperado, manda pra home
+            return redirect('index')
+
+    # se for GET só mostra o template
     return render(request, 'login.html')
+
+
 
 # consulta DAS cliente
 def consulta_das_cliente(request):
@@ -24,10 +53,16 @@ def consulta_das_cont(request):
 
 # dashboard cliente
 def dashboard_cliente(request):
+    if request.session.get('tipo_de_usuario') != 'cliente':
+        return redirect('login')
+
     return render(request, 'dashboard_cliente.html')
 
 # dashboard cont
 def dashboard_cont(request):
+    if request.session.get('tipo_de_usuario') not in ['contador', 'empresario']:
+        return redirect('login')
+
     return render(request, 'dashboard_cont.html')
 
 # DASMEI cliente
