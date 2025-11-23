@@ -1,0 +1,230 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Editar Cliente - FH Assessoria</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/dashboard.css' %}" />
+</head>
+
+<body>
+
+    {% include '_header_contador.html' %}
+
+    <div class="dashboard-container">
+        {% include '_sidebar_cont.html' %}
+
+        <main class="main-content">
+
+            <div class="card shadow-sm border-0 main-content-card">
+                <div class="card-body p-4 p-md-5">
+
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <h1 class="h3 fw-bold">Editar Cliente</h1>
+
+                        <a href="{% url 'detalhe_cliente' empresa.cnpj %}" class="btn btn-outline-secondary">
+                            <i class="bi bi-arrow-left"></i> Voltar
+                        </a>
+                    </div>
+
+                    <form method="post">
+                        {% csrf_token %}
+
+                        <!-- ================================================================= -->
+                        <!-- DADOS DA EMPRESA -->
+                        <!-- ================================================================= -->
+                        <h5 class="fw-semibold mb-3">Dados da Empresa</h5>
+
+                        <div class="row g-3 mb-3">
+                            <div class="col-md-4">
+                                <label class="form-label">CNPJ</label>
+                                <input type="text" class="form-control" value="{{ empresa.cnpj }}" disabled>
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label">Razão Social</label>
+                                <input type="text" name="razao_social" class="form-control"
+                                    value="{{ empresa.razao_social }}">
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label">Nome Fantasia</label>
+                                <input type="text" name="nome_fantasia" class="form-control"
+                                    value="{{ empresa.nome_fantasia }}">
+                            </div>
+                        </div>
+
+                        <div class="row g-3 mb-3">
+                            <div class="col-md-4">
+                                <label class="form-label">Inscrição Municipal</label>
+                                <input type="text" name="inscricao_municipal" class="form-control"
+                                    value="{{ empresa.inscricao_municipal }}">
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label">Tipo de Empresa</label>
+                                <input type="text" name="tipo_empresa" class="form-control"
+                                    value="{{ empresa.tipo_empresa }}">
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label">Data de Registro</label>
+                                <input type="date" name="empresa_data_registro" class="form-control"
+                                    value="{{ empresa.data_de_registro|date:'Y-m-d' }}">
+                            </div>
+                        </div>
+
+                        <div class="row g-3 mb-4">
+                            <div class="col-md-6">
+                                <label class="form-label">E-mail da empresa</label>
+                                <input type="email" name="empresa_email" class="form-control"
+                                    value="{{ empresa.email }}">
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Telefone da empresa</label>
+                                <input type="text" name="empresa_telefone" class="form-control"
+                                    value="{{ empresa.telefone }}">
+                            </div>
+                        </div>
+
+                        <div class="row g-3 mb-4">
+                            <div class="col-md-6">
+                                <label class="form-label">Logradouro</label>
+                                <input type="text" name="empresa_logradouro" class="form-control"
+                                    value="{{ empresa.logradouro }}">
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label">Bairro</label>
+                                <input type="text" name="empresa_bairro" class="form-control"
+                                    value="{{ empresa.bairro }}">
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label">Cidade</label>
+                                <input type="text" name="empresa_cidade" class="form-control"
+                                    value="{{ empresa.cidade }}">
+                            </div>
+                        </div>
+
+                        <div class="row g-3 mb-5">
+                            <div class="col-md-3">
+                                <label class="form-label">Estado</label>
+                                <input type="text" name="empresa_estado" class="form-control"
+                                    value="{{ empresa.estado }}">
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label">CEP</label>
+                                <input type="text" name="empresa_cep" class="form-control" value="{{ empresa.cep }}">
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">País</label>
+                                <input type="text" name="empresa_pais" class="form-control" value="{{ empresa.pais }}">
+                            </div>
+                        </div>
+
+                        <hr class="my-4">
+
+                        <!-- ================================================================= -->
+                        <!-- RESPONSÁVEL / USUÁRIO -->
+                        <!-- ================================================================= -->
+                        <h5 class="fw-semibold mb-3">Usuário Responsável</h5>
+
+                        {% if usuario %}
+                        <div class="row g-3 mb-3">
+                            <div class="col-md-4">
+                                <label class="form-label">Nome</label>
+                                <input type="text" name="usuario_nome" class="form-control" value="{{ usuario.nome }}">
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label">User</label>
+                                <input type="text" name="usuario_username" class="form-control"
+                                    value="{{ usuario.username }}">
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label">Telefone</label>
+                                <input type="text" name="usuario_telefone" class="form-control"
+                                    value="{{ usuario.telefone }}">
+                            </div>
+                        </div>
+
+                        <div class="row g-3 mb-3">
+                            <div class="col-md-6">
+                                <label class="form-label">E-mail</label>
+                                <input type="email" name="usuario_email" class="form-control"
+                                    value="{{ usuario.email }}">
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label">Senha</label>
+                                <input type="password" name="usuario_senha" class="form-control"
+                                    value="{{ usuario.senha }}">
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label">Data de Registro</label>
+                                <input type="date" name="usuario_data_registro" class="form-control"
+                                    value="{{ usuario.data_de_registro|date:'Y-m-d' }}">
+                            </div>
+                        </div>
+
+                        <div class="row g-3 mb-5">
+                            <div class="col-md-6">
+                                <label class="form-label">Logradouro</label>
+                                <input type="text" name="usuario_logradouro" class="form-control"
+                                    value="{{ usuario.logradouro }}">
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label">Bairro</label>
+                                <input type="text" name="usuario_bairro" class="form-control"
+                                    value="{{ usuario.bairro }}">
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label">Cidade</label>
+                                <input type="text" name="usuario_cidade" class="form-control"
+                                    value="{{ usuario.cidade }}">
+                            </div>
+                        </div>
+
+                        <div class="row g-3 mb-4">
+                            <div class="col-md-3">
+                                <label class="form-label">Estado</label>
+                                <input type="text" name="usuario_estado" class="form-control"
+                                    value="{{ usuario.estado }}">
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label">CEP</label>
+                                <input type="text" name="usuario_cep" class="form-control" value="{{ usuario.cep }}">
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">País</label>
+                                <input type="text" name="usuario_pais" class="form-control" value="{{ usuario.pais }}">
+                            </div>
+                        </div>
+                        {% endif %}
+
+                        <div class="text-end mt-4">
+                            <button type="submit" class="btn btn-primary px-4">
+                                <i class="bi bi-check-circle"></i> Salvar alterações
+                            </button>
+                        </div>
+
+                    </form>
+
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+</body>
+
+</html>

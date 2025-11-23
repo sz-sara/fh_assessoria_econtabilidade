@@ -21,6 +21,11 @@ urlpatterns = [
     path('dasmei-cont/', views.DASMEI_cont, name='DASMEI_cont'),
 
     path('gestao-clientes/', views.gestao_clientes_cont, name='gestao_clientes_cont'),
+    path('gestao-clientes/<str:cnpj>/', views.detalhe_cliente, name='detalhe_cliente'),
+    path('clientes/<str:cnpj>/editar/', views.editar_cliente, name='editar_cliente'),
+    path('clientes/<str:cnpj>/excluir/', views.excluir_cliente, name='excluir_cliente'),
+
+
     path('gestao-impostos/', views.gestao_impostos_cont, name='gestao_impostos_cont'),
     path('gestao-tarefas/', views.gestao_tarefas_cont, name='gestao_tarefas_cont'),
     path('gestao-docs/', views.gestaodocs, name='gestaodocs'),
