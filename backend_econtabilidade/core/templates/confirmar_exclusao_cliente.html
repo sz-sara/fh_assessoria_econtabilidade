@@ -1,0 +1,103 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Excluir Cliente - FH Assessoria</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/dashboard.css' %}" />
+</head>
+
+<body>
+    {% include '_header_contador.html' %}
+
+    <div class="dashboard-container">
+        {% include '_sidebar_cont.html' %}
+
+        <main class="main-content">
+            <div class="card shadow-sm border-0 main-content-card">
+                <div class="card-body p-4 p-md-5">
+
+                    <h1 class="h3 fw-bold text-danger mb-3">
+                        <i class="bi bi-exclamation-triangle-fill me-2"></i>
+                        Confirmar exclusão do cliente
+                    </h1>
+
+                    <p class="mb-3">
+                        Você está prestes a excluir o cliente:
+                    </p>
+
+                    <ul class="list-group mb-3">
+                        <li class="list-group-item">
+                            <strong>Empresa:</strong>
+                            {{ empresa.nome_fantasia }} ({{ empresa.razao_social }})
+                        </li>
+                        <li class="list-group-item">
+                            <strong>CNPJ:</strong> {{ empresa.cnpj }}
+                        </li>
+                        <li class="list-group-item">
+                            <strong>E-mail:</strong> {{ empresa.email|default:"—" }}
+                        </li>
+                    </ul>
+
+                    {% if relacoes %}
+                    <p class="text-muted mb-2">
+                        Usuário(s) vinculado(s) a esta empresa:
+                    </p>
+                    <ul class="list-group mb-4">
+                        {% for rel in relacoes %}
+                        <li class="list-group-item d-flex justify-content-between">
+                            <span>
+                                {{ rel.usuario_cliente.nome }} – {{ rel.usuario_cliente.email }}
+                            </span>
+                            <span class="text-muted small">
+                                CPF: {{ rel.usuario_cliente.cpf }}
+                            </span>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                    <p class="text-danger small mb-4">
+                        <strong>Atenção:</strong> os vínculos serão removidos e,
+                        se algum usuário não tiver mais nenhuma empresa vinculada,
+                        ele também será excluído.
+                    </p>
+                    {% endif %}
+
+                    <form method="post">
+                        {% csrf_token %}
+                        <div class="d-flex justify-content-between">
+                            <a href="{% url 'detalhe_cliente' empresa.cnpj %}" class="btn btn-outline-secondary">
+                                Cancelar
+                            </a>
+
+                            <button type="submit" class="btn btn-danger">
+                                <i class="bi bi-trash"></i> Confirmar exclusão
+                            </button>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{% static 'js/cont.js' %}" defer></script>
+</body>
+
+</html>
