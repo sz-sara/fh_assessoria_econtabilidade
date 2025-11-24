@@ -79,6 +79,11 @@ def excluir_cliente(request, cnpj):
         'relacoes': relacoes,
     })
 
+#logout
+def logout_usuario(request):
+    request.session.flush()  # limpa sessão
+    messages.success(request, 'Você saiu do sistema.')
+    return redirect('login')
     
 
 
@@ -99,7 +104,7 @@ def dashboard_cliente(request):
 
 # dashboard cont
 def dashboard_cont(request):
-    if request.session.get('tipo_de_usuario') not in ['contador', 'empresario']:
+    if request.session.get('tipo_de_usuario') not in ['contador', 'cliente']:
         return redirect('login')
 
     return render(request, 'dashboard_cont.html')
@@ -271,7 +276,7 @@ def gestao_clientes_cont(request):
 
 def detalhe_cliente(request, cnpj):
     # garante que só contador/empresário veja
-    if request.session.get('tipo_de_usuario') not in ['contador', 'empresario']:
+    if request.session.get('tipo_de_usuario') not in ['contador', 'cliente']:
         return redirect('login')
 
     empresa = get_object_or_404(Empresa, cnpj=cnpj)
@@ -356,7 +361,7 @@ def gestao_impostos_cont(request):
 # gestão tarefas cont
 def gestao_tarefas_cont(request):
     # só contador/empresário acessa
-    if request.session.get('tipo_de_usuario') not in ['contador', 'empresario']:
+    if request.session.get('tipo_de_usuario') not in ['contador', 'cliente']:
         return redirect('login')
 
     # ---------- CRIAR NOVA TAREFA (POST do modal) ----------
@@ -427,7 +432,7 @@ def gestao_tarefas_cont(request):
 #detalhes das tarefas
 def detalhe_tarefa(request, tarefa_id):
     # garante que só contador/empresário veja
-    if request.session.get('tipo_de_usuario') not in ['contador', 'empresario']:
+    if request.session.get('tipo_de_usuario') not in ['contador', 'cliente']:
         return redirect('login')
 
     tarefa = get_object_or_404(
@@ -449,7 +454,7 @@ def detalhe_tarefa(request, tarefa_id):
 
 def editar_tarefa(request, tarefa_id):
     # só contador/empresário pode editar
-    if request.session.get('tipo_de_usuario') not in ['contador', 'empresario']:
+    if request.session.get('tipo_de_usuario') not in ['contador', 'cliente']:
         return redirect('login')
 
     tarefa = get_object_or_404(
@@ -486,7 +491,7 @@ def excluir_tarefa(request, tarefa_id):
     tarefa = get_object_or_404(Tarefa, id=tarefa_id)
 
     
-    if request.session.get('tipo_de_usuario') not in ['contador', 'empresario']:
+    if request.session.get('tipo_de_usuario') not in ['contador', 'cliente']:
         return redirect('login')
 
     if request.method == 'POST':

@@ -8,6 +8,8 @@ urlpatterns = [
     # Rotas da aplicação
     path('', views.index, name='index'),
     path('login/', views.login_usuario, name='login'),
+    path('logout/', views.logout_usuario, name='logout'),
+
     path('cadastro/', views.cadastro_usuario, name='cadastro_usuario'),
     path('redefinicao/', views.redefinicao, name='redefinicao'),
 
