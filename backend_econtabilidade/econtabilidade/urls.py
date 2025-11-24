@@ -28,6 +28,10 @@ urlpatterns = [
 
     path('gestao-impostos/', views.gestao_impostos_cont, name='gestao_impostos_cont'),
     path('gestao-tarefas/', views.gestao_tarefas_cont, name='gestao_tarefas_cont'),
+    path('tarefas/<int:tarefa_id>/', views.detalhe_tarefa, name='detalhe_tarefa'),
+    path('tarefas/<int:tarefa_id>/editar/', views.editar_tarefa, name='editar_tarefa'),
+    path('tarefas/<int:tarefa_id>/excluir/', views.excluir_tarefa, name='excluir_tarefa'),
+    
     path('gestao-docs/', views.gestaodocs, name='gestaodocs'),
 
     path('notificacoes-cliente/', views.notificacoes_cliente, name='notificacoes_cliente'),
