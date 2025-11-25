@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Usuario, Empresa, EmpresasUsuarioCliente
+from .models import Usuario, Empresa, EmpresasUsuarioCliente, Tarefa
 from django.contrib import messages
 from django.db import transaction, IntegrityError
 from datetime import date
@@ -79,6 +79,11 @@ def excluir_cliente(request, cnpj):
         'relacoes': relacoes,
     })
 
+#logout
+def logout_usuario(request):
+    request.session.flush()  # limpa sessão
+    messages.success(request, 'Você saiu do sistema.')
+    return redirect('login')
     
 
 
@@ -99,7 +104,7 @@ def dashboard_cliente(request):
 
 # dashboard cont
 def dashboard_cont(request):
-    if request.session.get('tipo_de_usuario') not in ['contador', 'empresario']:
+    if request.session.get('tipo_de_usuario') not in ['contador', 'cliente']:
         return redirect('login')
 
     return render(request, 'dashboard_cont.html')
@@ -271,7 +276,7 @@ def gestao_clientes_cont(request):
 
 def detalhe_cliente(request, cnpj):
     # garante que só contador/empresário veja
-    if request.session.get('tipo_de_usuario') not in ['contador', 'empresario']:
+    if request.session.get('tipo_de_usuario') not in ['contador', 'cliente']:
         return redirect('login')
 
     empresa = get_object_or_404(Empresa, cnpj=cnpj)
@@ -355,7 +360,153 @@ def gestao_impostos_cont(request):
 
 # gestão tarefas cont
 def gestao_tarefas_cont(request):
-    return render(request, 'gestao_tarefas_cont.html')
+    # só contador/empresário acessa
+    if request.session.get('tipo_de_usuario') not in ['contador', 'cliente']:
+        return redirect('login')
+
+    # ---------- CRIAR NOVA TAREFA (POST do modal) ----------
+    if request.method == 'POST':
+        empresa_cnpj = request.POST.get('empresa_cnpj')
+        titulo = request.POST.get('titulo')
+        descricao = request.POST.get('descricao')
+        status = request.POST.get('status')
+        prazo_raw = request.POST.get('prazo')
+        nivel_prioridade = request.POST.get('nivel_de_prioridade')
+
+
+        # converte data de prazo
+        prazo = None
+        if prazo_raw:
+            try:
+                prazo = date.fromisoformat(prazo_raw)
+            except ValueError:
+                prazo = None
+
+        # responsável: usuário logado (contador)
+        usuario = None
+        usuario_id = request.session.get('usuario_id')
+        if usuario_id:
+            try:
+                usuario = Usuario.objects.get(pk=usuario_id)
+            except Usuario.DoesNotExist:
+                usuario = None
+
+        # empresa da tarefa
+        empresa = None
+        if empresa_cnpj:
+            empresa = Empresa.objects.filter(cnpj=empresa_cnpj).first()
+
+        Tarefa.objects.create(
+            usuario=usuario,
+            empresa_cnpj=empresa,
+            titulo=titulo,
+            descricao=descricao,
+            status=status,
+            nivel_de_prioridade=nivel_prioridade,  
+            criado_em=date.today(),
+            prazo=prazo,
+        )
+
+        messages.success(request, 'Tarefa criada com sucesso.')
+        return redirect('gestao_tarefas_cont')
+
+    # ---------- LISTAR TAREFAS (GET) ----------
+    tarefas = (
+        Tarefa.objects
+        .select_related('empresa_cnpj')
+        .order_by('prazo', 'id')
+    )
+
+    # para o select do modal
+    empresas = Empresa.objects.order_by('nome_fantasia')
+
+    return render(
+        request,
+        'gestao_tarefas_cont.html',
+        {
+            'tarefas': tarefas,
+            'empresas': empresas,
+        }
+    )
+
+#detalhes das tarefas
+def detalhe_tarefa(request, tarefa_id):
+    # garante que só contador/empresário veja
+    if request.session.get('tipo_de_usuario') not in ['contador', 'cliente']:
+        return redirect('login')
+
+    tarefa = get_object_or_404(
+        Tarefa.objects.select_related('empresa_cnpj', 'usuario'),
+        pk=tarefa_id
+    )
+
+    empresa = tarefa.empresa_cnpj
+    usuario = tarefa.usuario
+
+    context = {
+        'tarefa': tarefa,
+        'empresa': empresa,
+        'usuario': usuario,
+    }
+    return render(request, 'detalhe_tarefa.html', context)
+
+#editar tarefas
+
+def editar_tarefa(request, tarefa_id):
+    # só contador/empresário pode editar
+    if request.session.get('tipo_de_usuario') not in ['contador', 'cliente']:
+        return redirect('login')
+
+    tarefa = get_object_or_404(
+        Tarefa.objects.select_related('empresa_cnpj', 'usuario'),
+        id=tarefa_id
+    )
+
+    if request.method == 'POST':
+        tarefa.titulo = request.POST.get('titulo')
+        tarefa.descricao = request.POST.get('descricao')
+        tarefa.status = request.POST.get('status')
+        tarefa.nivel_de_prioridade = request.POST.get('nivel_de_prioridade')
+
+        prazo_raw = request.POST.get('prazo')
+        if prazo_raw:
+            try:
+                tarefa.prazo = date.fromisoformat(prazo_raw)
+            except ValueError:
+                
+                messages.warning(request, 'Data de prazo inválida. Mantido valor anterior.')
+
+        tarefa.save()
+        messages.success(request, 'Tarefa atualizada com sucesso!')
+        return redirect('detalhe_tarefa', tarefa_id=tarefa.id)
+
+    # GET → exibe o formulário preenchido
+    return render(request, 'editar_tarefa.html', {
+        'tarefa': tarefa,
+    })
+
+#excluir tarefas
+
+def excluir_tarefa(request, tarefa_id):
+    tarefa = get_object_or_404(Tarefa, id=tarefa_id)
+
+    
+    if request.session.get('tipo_de_usuario') not in ['contador', 'cliente']:
+        return redirect('login')
+
+    if request.method == 'POST':
+        empresa_nome = tarefa.empresa_cnpj.nome_fantasia if tarefa.empresa_cnpj else ''
+        tarefa.delete()
+        messages.success(
+            request,
+            f'Tarefa da empresa "{empresa_nome}" excluída com sucesso.'
+        )
+        return redirect('gestao_tarefas_cont')
+
+    # GET → mostra tela de confirmação
+    return render(request, 'confirmar_exclusao_tarefa.html', {
+        'tarefa': tarefa,
+    })
 
 # gestão docs
 def gestaodocs(request):

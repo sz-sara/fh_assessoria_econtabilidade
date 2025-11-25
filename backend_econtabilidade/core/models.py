@@ -146,11 +146,22 @@ class Tarefa(models.Model):
         null=True, blank=True,
         related_name='tarefas'
     )
+    
+    empresa_cnpj = models.ForeignKey(
+        'Empresa',
+        to_field='cnpj',
+        db_column='Empresa_CNPJ',
+        on_delete=models.CASCADE,
+        related_name='tarefas',
+        null=True, blank=True 
+    )
+        
     titulo = models.CharField(db_column='Titulo', max_length=255, blank=True, null=True)
     descricao = models.TextField(db_column='Descricao', blank=True, null=True)
     status = models.CharField(db_column='Status', max_length=50, blank=True, null=True)
     nivel_de_prioridade = models.CharField(db_column='Nivel_de_prioridade', max_length=50, blank=True, null=True)
     criado_em = models.DateField(db_column='Criado_em', blank=True, null=True)
+    prazo = models.DateField(db_column='Prazo', blank=True, null=True)
 
     class Meta:
         db_table = 'Tarefa'
