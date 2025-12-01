@@ -3,6 +3,8 @@ from .models import Usuario, Empresa, EmpresasUsuarioCliente, Tarefa
 from django.contrib import messages
 from django.db import transaction, IntegrityError
 from datetime import date
+from django.contrib.auth.hashers import make_password, check_password
+
 
 # Create your views here.
 
@@ -14,16 +16,21 @@ def index(request):
 def cadastro_usuario(request):
     return render(request, 'cadastro.html')
 
-# login 
+# login
 def login_usuario(request):
     if request.method == 'POST':
         email = request.POST.get('email')
         senha = request.POST.get('senha')
 
-        # tenta achar o usuário
+        # tenta achar o usuário pelo e-mail
         try:
-            usuario = Usuario.objects.get(email=email, senha=senha)
+            usuario = Usuario.objects.get(email=email)
         except Usuario.DoesNotExist:
+            messages.error(request, 'E-mail ou senha inválidos.')
+            return render(request, 'login.html')
+
+        # verifica a senha com hash
+        if not check_password(senha, usuario.senha):
             messages.error(request, 'E-mail ou senha inválidos.')
             return render(request, 'login.html')
 
@@ -34,14 +41,14 @@ def login_usuario(request):
         # redireciona conforme o tipo
         if usuario.tipo_de_usuario == 'cliente':
             return redirect('dashboard_cliente')
-        elif usuario.tipo_de_usuario in ['contador']:
+        elif usuario.tipo_de_usuario == 'contador':
             return redirect('dashboard_cont')
         else:
-            # se vier algum tipo inesperado, manda pra home
             return redirect('index')
 
     # se for GET só mostra o template
     return render(request, 'login.html')
+
 
 #excluir cliente
 @transaction.atomic
@@ -218,7 +225,7 @@ def gestao_clientes_cont(request):
                         'username': username,
                         'email': email,
                         'telefone': telefone,
-                        'senha': senha,
+                        'senha': make_password(senha),
                         'logradouro': usuario_logradouro,
                         'bairro': usuario_bairro,
                         'cidade': usuario_cidade,
@@ -234,7 +241,7 @@ def gestao_clientes_cont(request):
                 usuario.username = username
                 usuario.email = email
                 usuario.telefone = telefone
-                usuario.senha = senha
+                usuario.senha = make_password(senha)
                 usuario.logradouro = usuario_logradouro
                 usuario.bairro = usuario_bairro
                 usuario.cidade = usuario_cidade
@@ -335,7 +342,12 @@ def editar_cliente(request, cnpj):
             usuario.username = request.POST.get('usuario_username')
             usuario.telefone = request.POST.get('usuario_telefone')
             usuario.email = request.POST.get('usuario_email')
-            usuario.senha = request.POST.get('usuario_senha')
+
+            # senha só muda se o campo NÃO estiver vazio
+            nova_senha = request.POST.get('usuario_senha')
+            if nova_senha:
+                usuario.senha = make_password(nova_senha)
+
             usuario.data_de_registro = request.POST.get('usuario_data_registro') or None
             usuario.logradouro = request.POST.get('usuario_logradouro')
             usuario.bairro = request.POST.get('usuario_bairro')
